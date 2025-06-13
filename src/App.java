@@ -13,14 +13,14 @@ public class App {
 
         //Musica 1
         biblioteca[0][0] = "banco";//Nome da Música
-        biblioteca[0][1] = "matuê";//Cantor
+        biblioteca[0][1] = "matue";//Cantor
         biblioteca[0][2] = 1;      //Tipo 1 = Trap
         biblioteca[0][3] = 4.14;   //Duração
         biblioteca[0][4] = false;  //Favorito
         biblioteca[0][5] = 0;      //Quantidade de repetições
         //Musica 2
         biblioteca[1][0] = "v de vilao";
-        biblioteca[1][1] = "matuê";
+        biblioteca[1][1] = "matue";
         biblioteca[1][2] = 1;
         biblioteca[1][3] = 2.26;
         biblioteca[1][4] = false;
@@ -78,6 +78,10 @@ public class App {
             switch (escolha) {
                 case 1:
                     PesquisarMusica();
+                    break;
+                case 2:
+                    PesquisarArtista();
+                    break;
 
             }
         } while (true);
@@ -95,7 +99,7 @@ public class App {
         System.out.println("Selecione uma das seguintes opções:");
         System.out.println("1 - Pesquisar Musica    |    2 - Pesquisar Artista");
         System.out.println("3 - Tocar Música        |    4 - Estatísticas");
-        System.out.println("6 - PlayList            |    7 - Favoritas");
+        System.out.println("5 - PlayList            |    6 - Favoritas");
         return scanner.nextInt();
 
     }
@@ -105,7 +109,7 @@ public class App {
         System.out.println("Digite o nome da Musica (sem acentos): ");
         scanner.nextLine();
         String nome = scanner.nextLine().toLowerCase();
-
+        boolean musica_existe = true;
         for (int i = 0; i <= 7; i++) {
             if (biblioteca[i][0].equals(nome)) {
                 System.out.println("Nome: " + biblioteca[i][0]);
@@ -118,8 +122,43 @@ public class App {
                     System.out.println("Estilo: Pop");
                 }
                 System.out.println("Duração: " + biblioteca[i][3]);
+                musica_existe = false;
             }
         }
+        if (musica_existe) {
+            System.out.println("A musica digitada não existe em nossa biblioteca!");
+        }
+        System.out.println("\nPressione enter para prosseguir ->");
+        scanner.nextLine();
+    }
+
+    public static void PesquisarArtista() {
+
+        System.out.println("Digite o nome do(a) artista: ");
+        scanner.nextLine();
+        String nome = scanner.nextLine().toLowerCase();
+        boolean musico_existe = false;
+        for (int i = 0; i <= 7; i++) {
+            if (biblioteca[i][1].equals(nome)) {
+                System.out.println("Cantor: " + biblioteca[i][1]);
+                musico_existe = true;
+                break;
+            }
+        }
+        //Printa as musicas do cantor.
+        if (musico_existe) {
+            for (int i = 0; i <= 7; i++) {
+                if (biblioteca[i][1].equals(nome)) {
+                    System.out.println("Música: " + biblioteca[i][0]);
+                }
+            }
+        } else {
+            System.out.println("Escreva o nome de um cantor que tenhamos no catálogo!");
+        }
+
+        System.out.println("\nPressione enter para prosseguir ->");
+        scanner.nextLine();
+
     }
 
 }
