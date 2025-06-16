@@ -134,28 +134,38 @@ public class App {
 
     public static void PesquisarArtista() {
 
-        System.out.println("Digite o nome do(a) artista: ");
+        System.out.println("Digite o nome do(a) artista: (Ou digite Todos para listar todos)");
         scanner.nextLine();
         String nome = scanner.nextLine().toLowerCase();
-        boolean musico_existe = false;
-        for (int i = 0; i <= 7; i++) {
-            if (biblioteca[i][1].equals(nome)) {
-                System.out.println("Cantor: " + biblioteca[i][1]);
-                musico_existe = true;
-                break;
-            }
-        }
-        //Printa as musicas do cantor.
-        if (musico_existe) {
+
+        if (nome.equals("todos")) {
+            System.out.println("------LISTA DE MÚSICOS------");
+            System.out.println("------     Matuê      ------");
+            System.out.println("------     Teto       ------");
+            System.out.println("------     AC/DC      ------");
+            System.out.println("------     KISS       ------");
+            System.out.println("----------------------------");
+            System.out.println("Esses são os músicos disponiveis em nosso catálogo!");
+        } else {
+            boolean musico_existe = false;
             for (int i = 0; i <= 7; i++) {
                 if (biblioteca[i][1].equals(nome)) {
-                    System.out.println("Música: " + biblioteca[i][0]);
+                    System.out.println("Cantor: " + biblioteca[i][1]);
+                    musico_existe = true;
+                    break;
                 }
             }
-        } else {
-            System.out.println("Escreva o nome de um cantor que tenhamos no catálogo!");
+            //Printa as musicas do cantor.
+            if (musico_existe) {
+                for (int i = 0; i <= 7; i++) {
+                    if (biblioteca[i][1].equals(nome)) {
+                        System.out.println("Música: " + biblioteca[i][0]);
+                    }
+                }
+            } else {
+                System.out.println("Escreva o nome de um cantor que tenhamos no catálogo!");
+            }
         }
-
         System.out.println("\nPressione enter para prosseguir ->");
         scanner.nextLine();
 
