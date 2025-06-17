@@ -2,7 +2,7 @@
 import java.util.Scanner;
 
 public class App {
-
+    //ORIENTA A OBJETO SA PORRA E COLOCA NUM ARRAY boceta
     public static Scanner scanner = new Scanner(System.in);
     public static Object[][] biblioteca = new Object[8][6];
     public static Object[][] Playlist = new Object[8][6];
@@ -82,6 +82,8 @@ public class App {
                 case 2:
                     PesquisarArtista();
                     break;
+                case 3:
+                    TocarMusica();
 
             }
         } while (true);
@@ -106,27 +108,40 @@ public class App {
 
     //Pesquisar Música
     public static void PesquisarMusica() {
-        System.out.println("Digite o nome da Musica (sem acentos): ");
+        System.out.println("Digite o nome da Musica (sem acentos): (digite todas para listar a biblioteca completa)");
         scanner.nextLine();
         String nome = scanner.nextLine().toLowerCase();
-        boolean musica_existe = true;
-        for (int i = 0; i <= 7; i++) {
-            if (biblioteca[i][0].equals(nome)) {
-                System.out.println("Nome: " + biblioteca[i][0]);
-                System.out.println("Cantor: " + biblioteca[i][1]);
-                if (biblioteca[i][2].equals(1)) {
-                    System.out.println("Estilo: Trap");
-                } else if (biblioteca[i][2].equals(2)) {
-                    System.out.println("Estilo: Rock");
-                } else if (biblioteca[i][2].equals(3)) {
-                    System.out.println("Estilo: Pop");
-                }
-                System.out.println("Duração: " + biblioteca[i][3]);
-                musica_existe = false;
+
+        if(nome.equals("todas")){
+            for(int i=0;i <= 7;i++){
+                System.out.println("\nMúsica: "+biblioteca[i][0]);
+                System.out.println("Cantor: "+biblioteca[i][1]);
             }
-        }
-        if (musica_existe) {
-            System.out.println("A musica digitada não existe em nossa biblioteca!");
+        }else{
+            boolean musica_existe = true;
+            for (int i = 0; i <= 7; i++) {
+                if (biblioteca[i][0].equals(nome)) {
+                    System.out.println("Nome: " + biblioteca[i][0]);
+                    System.out.println("Cantor: " + biblioteca[i][1]);
+                    if (biblioteca[i][2].equals(1)) {
+                    System.out.println("Estilo: Trap");
+                    } else if (biblioteca[i][2].equals(2)) {
+                    System.out.println("Estilo: Rock");
+                    } else if (biblioteca[i][2].equals(3)) {
+                    System.out.println("Estilo: Pop");
+                    }
+                    System.out.println("Duração: " + biblioteca[i][3]);      
+                    if(biblioteca[i][4].equals(true)){
+                    System.out.println("[<3] Favorita");
+                    }else{
+                    System.out.println("[] Favorita");
+                    }
+                    musica_existe = false;
+                }
+            }
+            if (musica_existe) {
+                System.out.println("A música digitada não existe em nossa biblioteca!");
+            }
         }
         System.out.println("\nPressione enter para prosseguir ->");
         scanner.nextLine();
@@ -169,6 +184,25 @@ public class App {
         System.out.println("\nPressione enter para prosseguir ->");
         scanner.nextLine();
 
+    }
+
+    //tocar musica
+    public static void TocarMusica(){
+        System.out.println("Escolha a musica para tocar: ");
+        String nome = scanner.nextLine();
+        boolean musica_existe = true;
+        for(int i = 0;i <= 7;i++){
+            if(biblioteca[i][0].equals(nome)){
+                System.out.println("Reproduzindo: "+nome);
+                System.out.println("Duração: "+biblioteca[i][3]);
+                
+                musica_existe = false;
+            }
+            
+        }
+        if(musica_existe){
+                System.out.println("A música digitada não existe! ->");
+            }
     }
 
 }
