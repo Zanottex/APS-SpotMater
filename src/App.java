@@ -2,71 +2,77 @@
 import java.util.Scanner;
 
 public class App {
+
     //ORIENTA A OBJETO SA PORRA E COLOCA NUM ARRAY boceta
     public static Scanner scanner = new Scanner(System.in);
-    public static Object[][] biblioteca = new Object[8][6];
-    public static Object[][] Playlist = new Object[8][6];
     public static double tempo_ouvido = 0.0;
     public static int total_de_musicas_ouvidas = 0;
+    public static String[] nome_musica = new String[7];
+    public static String[] nome_cantor = new String[7];
+    public static Double[] duracao = new Double[7];
+    public static Boolean[] favorito = new Boolean[7];
+    public static Integer[] qtd_repetições = new Integer[7];
+    public static Integer[] tipo = new Integer[7];
 
     public static void main(String[] args) throws Exception {
 
-        //Musica 1
-        biblioteca[0][0] = "banco";//Nome da Música
-        biblioteca[0][1] = "matue";//Cantor
-        biblioteca[0][2] = 1;      //Tipo 1 = Trap
-        biblioteca[0][3] = 4.14;   //Duração
-        biblioteca[0][4] = false;  //Favorito
-        biblioteca[0][5] = 0;      //Quantidade de repetições
-        //Musica 2
-        biblioteca[1][0] = "v de vilao";
-        biblioteca[1][1] = "matue";
-        biblioteca[1][2] = 1;
-        biblioteca[1][3] = 2.26;
-        biblioteca[1][4] = false;
-        biblioteca[1][5] = 0;      //Quantidade de repetições
-        //Musica 3
-        biblioteca[2][0] = "bonjour";
-        biblioteca[2][1] = "kayblack";
-        biblioteca[2][2] = 1;
-        biblioteca[2][3] = 2.26;
-        biblioteca[2][4] = false;
-        biblioteca[2][5] = 0;      //Quantidade de repetições
-        //Musica 4
-        biblioteca[3][0] = "ransom";
-        biblioteca[3][1] = "lil tecca";
-        biblioteca[3][2] = 1;
-        biblioteca[3][3] = 2.11;
-        biblioteca[3][4] = false;
-        biblioteca[3][5] = 0;      //Quantidade de repetições
-        //Musica 5
-        biblioteca[4][0] = "yes or no";
-        biblioteca[4][1] = "teto";
-        biblioteca[4][2] = 1;
-        biblioteca[4][3] = 3.09;
-        biblioteca[4][4] = false;
-        biblioteca[4][5] = 0;      //Quantidade de repetições
-        //Musica 6
-        biblioteca[5][0] = "thunderstruck";
-        biblioteca[5][1] = "ac/dc";
-        biblioteca[5][2] = 2;      //Tipo 2 = Rock
-        biblioteca[5][3] = 4.53;
-        biblioteca[5][4] = false;
-        biblioteca[5][5] = 0;      //Quantidade de repetições
-        //Musica 7
-        biblioteca[6][0] = "i was made for lovin'you";
-        biblioteca[6][1] = "kiss";
-        biblioteca[6][2] = 2;
-        biblioteca[6][3] = 4.31;
-        biblioteca[6][4] = false;
-        biblioteca[6][5] = 0;      //Quantidade de repetições
-        //Musica 8
-        biblioteca[7][0] = "locked out of heaven";
-        biblioteca[7][1] = "bruno mars";
-        biblioteca[7][2] = 3;     //Tipo 3 = POP
-        biblioteca[7][3] = 3.53;
-        biblioteca[7][4] = false;
-        biblioteca[7][5] = 0;      //Quantidade de repetições
+        //Musicas
+        nome_musica[0] = "banco";
+        nome_cantor[0] = "matue";
+        duracao[0] = 4.14;
+        favorito[0] = false;
+        qtd_repetições[0] = 0;
+        tipo[0] = 1;
+
+        nome_musica[1] = "v de vilao";
+        nome_cantor[1] = "matue";
+        duracao[1] = 2.26;
+        favorito[1] = false;
+        qtd_repetições[1] = 0;
+        tipo[1] = 1;
+
+        nome_musica[2] = "bonjour";
+        nome_cantor[2] = "kayblack";
+        duracao[2] = 2.26;
+        favorito[2] = false;
+        qtd_repetições[2] = 0;
+        tipo[2] = 1;
+
+        nome_musica[3] = "ransom";
+        nome_cantor[3] = "lil tecca";
+        duracao[3] = 2.26;
+        favorito[3] = false;
+        qtd_repetições[3] = 0;
+        tipo[3] = 1;
+
+        nome_musica[4] = "yes or no";
+        nome_cantor[4] = "teto";
+        duracao[4] = 3.09;
+        favorito[4] = false;
+        qtd_repetições[4] = 0;
+        tipo[4] = 1;
+
+        nome_musica[5] = "thunderstruck";
+        nome_cantor[5] = "ac/dc";
+        duracao[5] = 3.09;
+        favorito[5] = false;
+        qtd_repetições[5] = 0;
+        tipo[5] = 2;
+
+        nome_musica[6] = "i was made for lovin'you";
+        nome_cantor[6] = "kiss";
+        duracao[6] = 4.31;
+        favorito[6] = false;
+        qtd_repetições[6] = 0;
+        tipo[6] = 2;
+
+        nome_musica[7] = "locked out of heaven";
+        nome_cantor[7] = "bruno mars";
+        duracao[7] = 3.53;
+        favorito[7] = false;
+        qtd_repetições[7] = 0;
+        tipo[7] = 3;
+        //Musicas
 
         System.out.println("Olá! Seja muito bem vindo ao SpotMaster! Primeiramente escreva seu nome: ");
         String nome = scanner.next();
@@ -84,7 +90,16 @@ public class App {
                     break;
                 case 3:
                     TocarMusica();
-
+                    break;
+                case 4:
+                    Estatísticas();
+                    break;
+                case 5:
+                    PlayList();
+                    break;
+                case 6:
+                    Favoritas();
+                    break;
             }
         } while (true);
 
@@ -112,97 +127,45 @@ public class App {
         scanner.nextLine();
         String nome = scanner.nextLine().toLowerCase();
 
-        if(nome.equals("todas")){
-            for(int i=0;i <= 7;i++){
-                System.out.println("\nMúsica: "+biblioteca[i][0]);
-                System.out.println("Cantor: "+biblioteca[i][1]);
-            }
-        }else{
-            boolean musica_existe = true;
-            for (int i = 0; i <= 7; i++) {
-                if (biblioteca[i][0].equals(nome)) {
-                    System.out.println("Nome: " + biblioteca[i][0]);
-                    System.out.println("Cantor: " + biblioteca[i][1]);
-                    if (biblioteca[i][2].equals(1)) {
-                    System.out.println("Estilo: Trap");
-                    } else if (biblioteca[i][2].equals(2)) {
-                    System.out.println("Estilo: Rock");
-                    } else if (biblioteca[i][2].equals(3)) {
-                    System.out.println("Estilo: Pop");
-                    }
-                    System.out.println("Duração: " + biblioteca[i][3]);      
-                    if(biblioteca[i][4].equals(true)){
-                    System.out.println("[<3] Favorita");
-                    }else{
-                    System.out.println("[] Favorita");
-                    }
-                    musica_existe = false;
-                }
-            }
-            if (musica_existe) {
-                System.out.println("A música digitada não existe em nossa biblioteca!");
-            }
-        }
         System.out.println("\nPressione enter para prosseguir ->");
         scanner.nextLine();
     }
 
     public static void PesquisarArtista() {
-
         System.out.println("Digite o nome do(a) artista: (Ou digite Todos para listar todos)");
         scanner.nextLine();
         String nome = scanner.nextLine().toLowerCase();
 
-        if (nome.equals("todos")) {
-            System.out.println("------LISTA DE MÚSICOS------");
-            System.out.println("------     Matuê      ------");
-            System.out.println("------     Teto       ------");
-            System.out.println("------     AC/DC      ------");
-            System.out.println("------     KISS       ------");
-            System.out.println("----------------------------");
-            System.out.println("Esses são os músicos disponiveis em nosso catálogo!");
-        } else {
-            boolean musico_existe = false;
-            for (int i = 0; i <= 7; i++) {
-                if (biblioteca[i][1].equals(nome)) {
-                    System.out.println("Cantor: " + biblioteca[i][1]);
-                    musico_existe = true;
-                    break;
-                }
-            }
-            //Printa as musicas do cantor.
-            if (musico_existe) {
-                for (int i = 0; i <= 7; i++) {
-                    if (biblioteca[i][1].equals(nome)) {
-                        System.out.println("Música: " + biblioteca[i][0]);
-                    }
-                }
-            } else {
-                System.out.println("Escreva o nome de um cantor que tenhamos no catálogo!");
-            }
-        }
         System.out.println("\nPressione enter para prosseguir ->");
         scanner.nextLine();
 
     }
 
     //tocar musica
-    public static void TocarMusica(){
+    public static void TocarMusica() {
         System.out.println("Escolha a musica para tocar: ");
         String nome = scanner.nextLine();
-        boolean musica_existe = true;
-        for(int i = 0;i <= 7;i++){
-            if(biblioteca[i][0].equals(nome)){
-                System.out.println("Reproduzindo: "+nome);
-                System.out.println("Duração: "+biblioteca[i][3]);
-                
-                musica_existe = false;
-            }
-            
-        }
-        if(musica_existe){
-                System.out.println("A música digitada não existe! ->");
-            }
+
+        System.out.println("\nPressione enter para prosseguir ->");
+        scanner.nextLine();
+    }
+
+    public static void Estatísticas() {
+
+        System.out.println("\nPressione enter para prosseguir ->");
+        scanner.nextLine();
+    }
+
+    public static void PlayList() {
+
+        System.out.println("\nPressione enter para prosseguir ->");
+        scanner.nextLine();
+    }
+
+    public static void Favoritas() {
+
+        System.out.println("\nPressione enter para prosseguir ->");
+        scanner.nextLine();
     }
 
 }
