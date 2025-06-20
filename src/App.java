@@ -13,6 +13,7 @@ public class App {
     public static Boolean[] favorito = new Boolean[7];
     public static Integer[] qtd_repetições = new Integer[7];
     public static Integer[] tipo = new Integer[7];
+    public static Integer[] playlist = new Integer[7];
 
     public static void main(String[] args) throws Exception {
 
@@ -100,6 +101,9 @@ public class App {
                 case 6:
                     Favoritas();
                     break;
+                case 7:
+                    PesquisarGenero();
+                    break;
             }
         } while (true);
 
@@ -117,6 +121,7 @@ public class App {
         System.out.println("1 - Pesquisar Musica    |    2 - Pesquisar Artista");
         System.out.println("3 - Tocar Música        |    4 - Estatísticas");
         System.out.println("5 - PlayList            |    6 - Favoritas");
+        System.out.println("7 - Pesquisar Gênero Musical            ");
         return scanner.nextInt();
 
     }
@@ -126,6 +131,47 @@ public class App {
         System.out.println("Digite o nome da Musica (sem acentos): (digite todas para listar a biblioteca completa)");
         scanner.nextLine();
         String nome = scanner.nextLine().toLowerCase();
+        boolean musica_existe = true;
+        if (nome.equals("todas")) {
+            for (int i = 0; i <= nome_musica.length; i++) {
+                System.out.println("Nome da música: " + nome_musica[i]);
+                System.out.println("Nome do cantor: " + nome_cantor[i]);
+                System.out.println("Duração: " + duracao[i]);
+                if (favorito[i]) {
+                    System.out.println("Favorita: []");
+                } else {
+                    System.out.println("Favorita: [<3]");
+                }
+            }
+        } else {
+            for (int i = 0; i <= nome_musica.length; i++) {
+
+                if (nome_musica[i].contains(nome)) {
+                    System.out.println("Nome da música: " + nome_musica[i]);
+                    System.out.println("Nome do cantor: " + nome_cantor[i]);
+                    System.out.println("Duração: " + duracao[i]);
+                    musica_existe = false;
+                    if (favorito[i]) {
+                        System.out.println("Favorita: []");
+                    } else {
+                        System.out.println("Favorita: [<3]");
+                    }
+                    if (tipo[i] == 1) {
+                        System.out.println("Tipo: Trap");
+                    } else if (tipo[i] == 2) {
+                        System.out.println("Tipo: Rock");
+                    } else if (tipo[i] == 3) {
+                        System.out.println("Tipo: Pop");
+                    } else {
+
+                    }
+                }
+
+            }
+            if (musica_existe) {
+                System.out.println("A musica que está procurando não existe ou não está em nosso catálogo!");
+            }
+        }
 
         System.out.println("\nPressione enter para prosseguir ->");
         scanner.nextLine();
@@ -135,7 +181,47 @@ public class App {
         System.out.println("Digite o nome do(a) artista: (Ou digite Todos para listar todos)");
         scanner.nextLine();
         String nome = scanner.nextLine().toLowerCase();
+        boolean cantor_existe = true;
 
+        if (nome.equals("todos")) {
+            System.out.println("Esses são todos os artistas em nosso catálogo: ");
+            for (int i = 0; i <= nome_musica.length; i++) {
+                System.out.println("Nome do cantor: " + nome_cantor[i]);
+                if (favorito[i]) {
+                    System.out.println("Favorita: []");
+                } else {
+                    System.out.println("Favorita: [<3]");
+                }
+            }
+        } else {
+            System.out.println("Procurando musicas do cantor: " + nome);
+            for (int i = 0; i <= nome_cantor.length; i++) {
+                if (nome_cantor[i].contains(nome)) {
+                    System.out.println("Nome da música: " + nome_musica[i]);
+                    System.out.println("Duração: " + duracao[i]);
+                    cantor_existe = false;
+                    if (favorito[i]) {
+                        System.out.println("Favorita: [<3]");
+                    } else {
+                        System.out.println("Favorita: []");
+                    }
+                    if (tipo[i] == 1) {
+                        System.out.println("Tipo: Trap");
+                    } else if (tipo[i] == 2) {
+                        System.out.println("Tipo: Rock");
+                    } else if (tipo[i] == 3) {
+                        System.out.println("Tipo: Pop");
+                    } else {
+
+                    }
+
+                }
+
+            }
+            if (cantor_existe) {
+                System.out.println("O musico/cantor procurado está incorreto ou não está na nossa lista de artistas ;(");
+            }
+        }
         System.out.println("\nPressione enter para prosseguir ->");
         scanner.nextLine();
 
@@ -157,12 +243,38 @@ public class App {
     }
 
     public static void PlayList() {
+        System.out.println("Esta é sua playlist!");
+        for (int i = 0; i <= playlist.length; i++) {
+            System.out.println("Nome da musica: " + nome_musica[playlist[i]]);
+            System.out.println("Nome do autor: " + nome_cantor[playlist[i]]);
+            System.out.println("Duração da musica: " + duracao[playlist[i]]);
+            if (favorito[playlist[i]]) {
+                System.out.println("Favoritada: [<3]");
+            } else {
+                System.out.println("Favoritada: []");
+            }
+            System.out.println("Quantidade de vezes escutada: " + qtd_repetições[playlist[i]]);
+            if (tipo[playlist[i]] == 1) {
+                System.out.println("Tipo: Trap");
+            } else if (tipo[playlist[i]] == 2) {
+                System.out.println("Tipo: Rock");
+            } else if (tipo[playlist[i]] == 3) {
+                System.out.println("Tipo: Pop");
+            } else {
 
+            }
+        }
         System.out.println("\nPressione enter para prosseguir ->");
         scanner.nextLine();
     }
 
     public static void Favoritas() {
+
+        System.out.println("\nPressione enter para prosseguir ->");
+        scanner.nextLine();
+    }
+
+    public static void PesquisarGenero() {
 
         System.out.println("\nPressione enter para prosseguir ->");
         scanner.nextLine();
