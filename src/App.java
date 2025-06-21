@@ -14,6 +14,16 @@ public class App {
     public static Integer[] qtd_repetições = new Integer[7];
     public static Integer[] tipo = new Integer[7];
     public static Integer[] playlist = new Integer[7];
+    public static int genero_trap = 0;
+    public static int genero_rock = 0;
+    public static int genero_pop = 0;
+    public static int matue = 0;
+    public static int teto = 0;
+    public static int kayblack = 0;
+    public static int liltecca = 0;
+    public static int brunomars = 0;
+    public static int acdc = 0;
+    public static int kiss = 0;
 
     public static void main(String[] args) throws Exception {
 
@@ -227,17 +237,30 @@ public class App {
 
     }
 
-    //tocar musica
-    public static void TocarMusica() {
-        System.out.println("Escolha a musica para tocar: ");
-        String nome = scanner.nextLine();
-
-        System.out.println("\nPressione enter para prosseguir ->");
-        scanner.nextLine();
-    }
-
     public static void Estatísticas() {
+        int indice = 5;
+        System.out.println("Essas são as suas estatisticas até o momento: ");
+        System.out.println("Tempo ouvido: " + tempo_ouvido);
+        System.out.println("Total de musicas ouvidas: " + total_de_musicas_ouvidas);
+        for (int i = 0; i <= qtd_repetições.length; i++) {
+            int maior = 0;
 
+            if (maior < qtd_repetições[i]) {
+                maior = qtd_repetições[i];
+                indice = i;
+            }
+        }
+        System.out.println("Musica mais ouvida: " + nome_musica[indice]);
+        if (genero_pop > genero_rock && genero_pop > genero_trap) {
+            System.out.println("Gênero Favorito: Pop");
+        } else if (genero_trap > genero_rock && genero_trap > genero_pop) {
+            System.out.println("Gênero Favorito: Trap");
+        } else if (genero_rock > genero_trap && genero_rock > genero_pop) {
+            System.out.println("Gênero Favorito: Rock");
+        } else {
+            System.out.println("Desculpe ainda não conseguimos definir um gênero especifico para você.");
+            System.out.println("Ouça mais músicas para termos mais informações sobre seus gostos!");
+        }
         System.out.println("\nPressione enter para prosseguir ->");
         scanner.nextLine();
     }
@@ -275,6 +298,15 @@ public class App {
     }
 
     public static void PesquisarGenero() {
+
+        System.out.println("\nPressione enter para prosseguir ->");
+        scanner.nextLine();
+    }
+
+    //tocar musica
+    public static void TocarMusica() {
+        System.out.println("Escolha a musica para tocar: ");
+        String nome = scanner.nextLine();
 
         System.out.println("\nPressione enter para prosseguir ->");
         scanner.nextLine();
