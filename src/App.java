@@ -394,12 +394,39 @@ public class App {
                 System.out.println("Favoritada: [<3]");
             }
         }
-        System.out.println("\nEssas são suas musicas favoritadas deseja adicionar (1) ou retirar(2) alguma musica?");
+        System.out.println("\nEssas são suas musicas favoritadas!");
         System.out.println("\nPressione enter para prosseguir ->");
         scanner.nextLine();
     }
 
     public static void PesquisarGenero() {
+
+        System.out.println("Escreva o nome do gênero musical (digite todos para ver todos os gêneros disponiveis)");
+        scanner.nextLine();
+        String nome = scanner.nextLine().toLowerCase();
+
+        if (nome.equals("todos")) {
+            System.out.println("Estes são todos os gêneros disponiveis:");
+            System.out.println("1 - Trap");
+            System.out.println("2 - Rock");
+            System.out.println("3 - PoP");
+        } else if (nome.equals("trap") || nome.equals("rock") || nome.equals("pop")) {
+            System.out.println("Musicas do gênero: " + nome);
+            for (int i = 0; i < nome_musica.length; i++) {
+                if (tipo[i] == 1 && nome.equals("trap")) {
+                    System.out.println("\nMusica: " + nome_musica[i]);
+                    System.out.println("Cantor: " + nome_cantor[i]);
+                } else if (tipo[i] == 2 && nome.equals("rock")) {
+                    System.out.println("\nMusica: " + nome_musica[i]);
+                    System.out.println("Cantor: " + nome_cantor[i]);
+                } else if (tipo[i] == 3 && nome.equals("pop")) {
+                    System.out.println("\nMusica: " + nome_musica[i]);
+                    System.out.println("Cantor: " + nome_cantor[i]);
+                }
+            }
+        } else {
+            System.out.println("\nEste gênero musical não existe ou não está em nosso catálogo!");
+        }
 
         System.out.println("\nPressione enter para prosseguir ->");
         scanner.nextLine();
