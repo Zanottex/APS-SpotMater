@@ -397,6 +397,7 @@ public class App {
         System.out.println("\nEssas são suas musicas favoritadas!");
         System.out.println("\nPressione enter para prosseguir ->");
         scanner.nextLine();
+        scanner.nextLine();
     }
 
     public static void PesquisarGenero() {
@@ -434,8 +435,136 @@ public class App {
 
     //tocar musica
     public static void TocarMusica() {
-        System.out.println("Escolha a musica para tocar: ");
-        String nome = scanner.nextLine();
+        System.out.println("Escolha uma playlist para ouvir as músicas biblioteca (1) Playlist Própria (2)");
+        int escolha = scanner.nextInt();
+        boolean musica_tocada = true;
+        if (escolha == 1) {
+            System.out.println("Escolha a musica para tocar: ");
+            scanner.nextLine();
+            String nome = scanner.nextLine();
+            for (int i = 0; i < nome_musica.length; i++) {
+                if (nome_musica[i].equals(nome)) {
+                    musica_tocada = false;
+                    System.out.println("Tocando agora....");
+                    System.out.println("Nome da musica: " + nome_musica[i]);
+                    System.out.println("Nome do autor: " + nome_cantor[i]);
+                    for (int j = 0; j <= duracao[i]; j++) {
+                        System.out.println("\nTempo: " + j + " - " + duracao[i]);
+                        try {
+                            Thread.sleep(1000);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+
+                    }
+
+                    qtd_repetições[i]++;
+                    tempo_ouvido += duracao[i];
+                    total_de_musicas_ouvidas++;
+                    if (tipo[i] == 1) {
+                        if (nome_cantor[i].equals("matue")) {
+                            matue++;
+                        } else if (nome_cantor[i].equals("kayblack")) {
+                            kayblack++;
+                        } else if (nome_cantor[i].equals("lil tecca")) {
+                            liltecca++;
+                        } else if (nome_cantor[i].equals("teto")) {
+                            teto++;
+                        }
+                        genero_trap++;
+                    } else if (tipo[i] == 2) {
+                        if (nome_cantor[i].equals("kiss")) {
+                            kiss++;
+                        } else if (nome_cantor[i].equals("ac/dc")) {
+                            acdc++;
+                        }
+                        genero_rock++;
+                    } else if (tipo[i] == 3) {
+                        if (nome_cantor[i].equals("bruno mars")) {
+                            brunomars++;
+                        }
+                        genero_pop++;
+                    }
+
+                    System.out.println("Deseja favoritar está música? Sim (1) Não (2)");
+                    int favoritar = scanner.nextInt();
+                    if (favoritar == 1) {
+                        favorito[i] = true;
+                    }
+
+                }
+
+            }
+            if (musica_tocada) {
+                System.out.println("Está musica não existe em nossa biblioteca ou não existe!");
+            }
+
+        } else if (escolha == 2) {
+            System.out.println("Escolha a musica para tocar: ");
+            scanner.nextLine();
+            String nome = scanner.nextLine();
+            for (int i = 0; i < playlist.length; i++) {
+                if (playlist[i] != null) {
+                    if (nome_musica[playlist[i]].equals(nome)) {
+                        musica_tocada = false;
+                        System.out.println("Tocando agora....");
+                        System.out.println("Nome da musica: " + nome_musica[playlist[i]]);
+                        System.out.println("Nome do autor: " + nome_cantor[playlist[i]]);
+                        for (int j = 0; j <= duracao[playlist[i]]; j++) {
+                            System.out.println("\nTempo: " + j + " - " + duracao[playlist[i]]);
+                            try {
+                                Thread.sleep(1000);
+                            } catch (InterruptedException e) {
+                                e.printStackTrace();
+                            }
+
+                        }
+
+                        qtd_repetições[playlist[i]]++;
+                        tempo_ouvido += duracao[playlist[i]];
+                        total_de_musicas_ouvidas++;
+                        if (tipo[playlist[i]] == 1) {
+                            if (nome_cantor[playlist[i]].equals("matue")) {
+                                matue++;
+                            } else if (nome_cantor[playlist[i]].equals("kayblack")) {
+                                kayblack++;
+                            } else if (nome_cantor[playlist[i]].equals("lil tecca")) {
+                                liltecca++;
+                            } else if (nome_cantor[playlist[i]].equals("teto")) {
+                                teto++;
+                            }
+                            genero_trap++;
+                        } else if (tipo[playlist[i]] == 2) {
+                            if (nome_cantor[playlist[i]].equals("kiss")) {
+                                kiss++;
+                            } else if (nome_cantor[playlist[i]].equals("ac/dc")) {
+                                acdc++;
+                            }
+                            genero_rock++;
+                        } else if (tipo[playlist[i]] == 3) {
+                            if (nome_cantor[playlist[i]].equals("bruno mars")) {
+                                brunomars++;
+                            }
+                            genero_pop++;
+                        }
+
+                        System.out.println("Deseja favoritar está música? Sim (1) Não (2)");
+                        int favoritar = scanner.nextInt();
+                        if (favoritar == 1) {
+                            favorito[playlist[i]] = true;
+                        }
+
+                    }
+                } else {
+
+                }
+
+            }
+            if (musica_tocada) {
+                System.out.println("Está musica não existe em sua playlist!");
+            }
+
+        }
 
         System.out.println("\nPressione enter para prosseguir ->");
         scanner.nextLine();
